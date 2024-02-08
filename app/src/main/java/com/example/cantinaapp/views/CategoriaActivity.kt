@@ -29,12 +29,18 @@ class CategoriaActivity : AppCompatActivity() {
 
         binding.recyclerViewProduto.layoutManager = LinearLayoutManager(applicationContext)
 
+        val i = intent
+
         db = DBHelper(applicationContext)
 
         loadList()
 
         binding.buttonAddProduct.setOnClickListener {
-            result.launch(Intent(applicationContext, AdicionarProduto::class.java))
+            //result.launch(Intent(applicationContext, AdicionarProduto::class.java))
+            val categoriaId = i.extras!!.getInt("categoriaId")
+            val j = Intent(applicationContext, AdicionarProduto::class.java)
+            j.putExtra("categoriaId", categoriaId)
+            result.launch(j)
         }
         //trata o valor de retorno da activity anterior
         result = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -48,7 +54,10 @@ class CategoriaActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun loadList() {
-        listaProdutos = db.produtoListSelectAll()
+        val i = intent
+        //listaProdutos = db.produtoListSelectByCategoriaId(i.extras!!.getInt("id"))
+        val categoriaId = i.extras!!.getInt("categoriaId")
+        listaProdutos = db.produtoListSelectByCategoriaId(categoriaId)
 
         val adapter = ProdutoListAdapter(listaProdutos)
         binding.recyclerViewProduto.adapter = adapter

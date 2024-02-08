@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity() {
         listaCategorias = db.categoriaListSelectAll()
         //tratar a CategoriaActivity
         val adapter = CategoriaListAdapter(listaCategorias, CategoriaListAdapter.OnClickListener { categoria ->
-            val i = Intent(applicationContext, CategoriaActivity::class.java)
-            i.putExtra("id", categoria.id)
+            val i = Intent(this, CategoriaActivity::class.java)
+            i.putExtra("categoriaId", categoria.id)
             result.launch(i)
         })
         binding.recyclerViewCategoria.adapter = adapter

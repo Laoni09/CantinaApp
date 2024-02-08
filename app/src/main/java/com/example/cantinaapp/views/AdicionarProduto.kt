@@ -15,12 +15,15 @@ class AdicionarProduto : AppCompatActivity() {
     private lateinit var binding: ActivityAdicionarProdutoBinding
     private lateinit var result: ActivityResultLauncher<Intent>
     private var id: Int? = -1
+    //não pode declarar o i = intent global (por quê?)
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdicionarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val i = intent
 
         val db = DBHelper(applicationContext)
 
@@ -45,10 +48,10 @@ class AdicionarProduto : AppCompatActivity() {
             if (id != null) {
                 imageId = id as Int
             }
+            val categoriaId = i.extras!!.getInt("categoriaId")
 
             if(!name.isEmpty() && !price.equals(0.00F)){
-                db.produtoInsert(name, price, imageId)
-                val i = intent
+                db.produtoInsert(name, price, imageId, categoriaId)
                 //revisar essa parte e ver se realmente precisa
                 i.putExtra("name", name)
                 i.putExtra("price", price)
