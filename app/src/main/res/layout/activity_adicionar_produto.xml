@@ -38,13 +38,30 @@
         android:hint="Preço do produto"
         android:inputType="numberDecimal" />
 
-    <Button
-        android:id="@+id/button_add_produto"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#FC4A1A"
-        android:text="ADICIONAR" />
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/button_cancelar_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#FC4A1A"
+            android:layout_marginEnd="5dp"
+            android:text="CANCELAR" />
+
+        <Button
+            android:id="@+id/button_add_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#FC4A1A"
+            android:layout_marginStart="5dp"
+            android:text="ADICIONAR" />
+
+    </LinearLayout>
 
 </LinearLayout>

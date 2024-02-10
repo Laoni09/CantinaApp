@@ -16,13 +16,31 @@
         android:gravity="center"
         android:layout_marginTop="300dp" />
 
-    <Button
-        android:id="@+id/button_add_categoria"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:text="ADICIONAR"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#FC4A1A" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_cancelar_categoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:text="CANCELAR"
+            android:backgroundTint="#FC4A1A" />
+
+        <Button
+            android:id="@+id/button_add_categoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:text="ADICIONAR"
+            android:backgroundTint="#FC4A1A" />
+
+    </LinearLayout>
 
 </LinearLayout>

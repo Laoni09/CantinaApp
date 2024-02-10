@@ -27,5 +27,11 @@ class AdicionarCategoria : AppCompatActivity() {
             }
             finish()
         }
+
+        binding.buttonCancelarCategoria.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            setResult(0, i)
+            finish()
+        }
     }
 }

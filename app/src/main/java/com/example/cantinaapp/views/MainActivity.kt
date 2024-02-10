@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             if(it.data != null && it.resultCode == 1){
                 loadList()
             } else if (it.data != null && it.resultCode == 0) {
-                Toast.makeText(applicationContext, "Operation Canceled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Operação Cancelada", Toast.LENGTH_SHORT).show()
             }
         }
     }

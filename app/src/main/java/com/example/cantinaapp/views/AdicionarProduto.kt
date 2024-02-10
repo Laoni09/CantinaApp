@@ -27,6 +27,11 @@ class AdicionarProduto : AppCompatActivity() {
 
         val db = DBHelper(applicationContext)
 
+        binding.buttonCancelarProduto.setOnClickListener {
+            setResult(0, i)
+            finish()
+        }
+
         binding.imageAdicionarImagem.setOnClickListener {
             result.launch(Intent(applicationContext, ProductImageSelectionActivity::class.java))
         }
