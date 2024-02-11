@@ -9,7 +9,9 @@ import com.example.cantinaapp.R
 import com.example.cantinaapp.model.Categoria
 import kotlinx.coroutines.NonDisposableHandle.parent
 
-class CategoriaListAdapter(val listaCategorias: ArrayList<Categoria>, val onClickListener: OnClickListener) :
+class CategoriaListAdapter(val listaCategorias: ArrayList<Categoria>,
+                           val onClickListener: OnClickListener,
+                           val onLongClickListener: OnLongClickListener) :
     RecyclerView.Adapter<CategoriaListAdapter.CategoriaViewHolder>() {
 
     class CategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,6 +20,10 @@ class CategoriaListAdapter(val listaCategorias: ArrayList<Categoria>, val onClic
 
     class OnClickListener(val clickListener: (categoria: Categoria) -> Unit) {
         fun onClick(categoria: Categoria) = clickListener(categoria)
+    }
+
+    class OnLongClickListener(val longClickListener: (categoria: Categoria) -> Unit) {
+        fun onLongClick(categoria: Categoria) = longClickListener(categoria)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriaViewHolder {
@@ -35,6 +41,11 @@ class CategoriaListAdapter(val listaCategorias: ArrayList<Categoria>, val onClic
         holder.textView.setText(categoria.name)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(categoria)
+        }
+        //não sei se essa bosta aq tá certa
+        holder.itemView.setOnLongClickListener {
+            onLongClickListener.onLongClick(categoria)
+            true
         }
     }
 }

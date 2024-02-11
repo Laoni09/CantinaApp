@@ -54,6 +54,11 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, CategoriaActivity::class.java)
             i.putExtra("categoriaId", categoria.id)
             result.launch(i)
+        }, CategoriaListAdapter.OnLongClickListener { categoria ->
+            val i = Intent(this, EditarCategoriaActivity::class.java)
+            i.putExtra("name", categoria.name)
+            i.putExtra("id", categoria.id)
+            result.launch(i)
         })
         binding.recyclerViewCategoria.adapter = adapter
 

@@ -54,6 +54,22 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "CantinaDB.db", nul
         return result
     }
 
+    fun categoriaUpdate(id: Int, name: String): Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("name", name)
+        val res = db.update("categoria", contentValues, "id=?", arrayOf(id.toString()))
+        db.close()
+        return res
+    }
+
+    fun categoriaDelete(id: Int): Int {
+        val db = this.writableDatabase
+        val res = db.delete("categoria", "id=?", arrayOf(id.toString()))
+        db.close()
+        return res
+    }
+
     fun categoriaListSelectAll(): ArrayList<Categoria> {
         val db = this.readableDatabase
         val c = db.rawQuery("SELECT * FROM categoria", null)
