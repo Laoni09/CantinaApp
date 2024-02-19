@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.EditarProdutoActivity">
+
+    <ImageView
+        android:id="@+id/image_editar_imagem"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/baseline_add_photo_alternate_24" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Editar imagem"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/edit_nome_produto"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/edit_preco_produto"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:inputType="numberDecimal" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_cancelar_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:text="CANCELAR"
+            android:backgroundTint="#FC4A1A" />
+
+        <Button
+            android:id="@+id/button_editar_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:text="EDITAR"
+            android:backgroundTint="#FC4A1A" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_excluir_produto"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="5dp"
+        android:text="EXCLUIR"
+        android:backgroundTint="#FF0000" />
+
+</LinearLayout>

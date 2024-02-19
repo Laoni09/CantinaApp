@@ -63,7 +63,15 @@ class CategoriaActivity : AppCompatActivity() {
         val categoriaId = i.extras!!.getInt("categoriaId")
         listaProdutos = db.produtoListSelectByCategoriaId(categoriaId)
 
-        val adapter = ProdutoListAdapter(listaProdutos)
+        val adapter = ProdutoListAdapter(listaProdutos, ProdutoListAdapter.OnClickListener { produto ->
+            val j = Intent(this, EditarProdutoActivity::class.java)
+            j.putExtra("id", produto.id)
+            j.putExtra("name", produto.name)
+            j.putExtra("price", produto.price)
+            j.putExtra("imageId", produto.imageId)
+            j.putExtra("categoriaId", categoriaId)
+            result.launch(j)
+        })
         binding.recyclerViewProduto.adapter = adapter
 
         adapter.notifyDataSetChanged()

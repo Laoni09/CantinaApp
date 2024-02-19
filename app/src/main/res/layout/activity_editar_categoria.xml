@@ -11,7 +11,6 @@
         android:id="@+id/edit_nome_categoria"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:hint=""
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="300dp" />
@@ -37,10 +36,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="5dp"
-        android:text="ADICIONAR"
+        android:layout_marginStart="8dp"
+        android:text="EDITAR"
         android:backgroundTint="#FC4A1A" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button_excluir_categoria"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="5dp"
+        android:text="EXCLUIR"
+        android:backgroundTint="#FF0000" />
 
 </LinearLayout>

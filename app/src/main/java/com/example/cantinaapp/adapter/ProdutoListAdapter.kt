@@ -8,14 +8,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cantinaapp.R
 import com.example.cantinaapp.model.Produto
+import kotlinx.coroutines.NonDisposableHandle.parent
 
-class ProdutoListAdapter(val listaProdutos: ArrayList<Produto>)
+class ProdutoListAdapter(val listaProdutos: ArrayList<Produto>,
+                         val onClickListener: OnClickListener)
     : RecyclerView.Adapter<ProdutoListAdapter.ProdutoViewHolder>() {
 
     class ProdutoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textNomeProduto: TextView = itemView.findViewById(R.id.row_nome_produto)
         val textPrecoProduto: TextView = itemView.findViewById(R.id.row_preco_produto)
         val imageMiniProduto: ImageView = itemView.findViewById(R.id.image_mini_produto)
+    }
+
+    class OnClickListener(val clickListener: (produto: Produto) -> Unit) {
+        fun onClick(produto: Produto) = clickListener(produto)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProdutoViewHolder {
@@ -36,6 +42,9 @@ class ProdutoListAdapter(val listaProdutos: ArrayList<Produto>)
             holder.imageMiniProduto.setImageResource(produto.imageId)
         } else {
             holder.imageMiniProduto.setImageResource(R.drawable.baseline_add_photo_alternate_24)
+        }
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(produto)
         }
     }
 }

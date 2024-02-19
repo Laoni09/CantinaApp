@@ -20,16 +20,22 @@ class EditarCategoriaActivity : AppCompatActivity() {
         binding.editNomeCategoria.setText(i.extras?.getString("name"))
         val categoriaId = i.extras!!.getInt("id")
 
-        //tá dando erro em algum lugar (talvez)
-        binding.editNomeCategoria.setOnClickListener {
+        //não tá atualizando na main (ver vídeo do bruno santos)
+        binding.buttonEditarCategoria.setOnClickListener {
             val name = binding.editNomeCategoria.text.toString().trim()
             if(!name.isEmpty()) {
                 db.categoriaUpdate(categoriaId, name)
             }
+            setResult(1, i)
             finish()
         }
 
         binding.buttonCancelarCategoria.setOnClickListener {
+            finish()
+        }
+
+        binding.buttonExcluirCategoria.setOnClickListener {
+            db.categoriaDelete(categoriaId)
             finish()
         }
 

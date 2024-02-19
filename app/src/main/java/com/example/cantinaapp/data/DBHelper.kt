@@ -101,6 +101,25 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "CantinaDB.db", nul
         return result
     }
 
+    fun produtoUpdate(id: Int, name: String, price: Float, imageId: Int, categoriaId: Int): Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("name", name)
+        contentValues.put("price", price)
+        contentValues.put("imageId", imageId)
+        contentValues.put("categoriaId", categoriaId)
+        val res = db.update("produto", contentValues, "id=?", arrayOf(id.toString()))
+        db.close()
+        return res
+    }
+
+    fun produtoDelete(id: Int): Int {
+        val db = this.writableDatabase
+        val res = db.delete("produto", "id=?", arrayOf(id.toString()))
+        db.close()
+        return res
+    }
+
     fun produtoListSelectAll(): ArrayList<Produto> {
         val db = this.readableDatabase
         val c = db.rawQuery("SELECT * FROM produto", null)
@@ -128,7 +147,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "CantinaDB.db", nul
     //retorna os produtos de tal categoria
     fun produtoListSelectByCategoriaId(categoriaId: Int): ArrayList<Produto> {
         val db = this.readableDatabase
-        val c = db.rawQuery("SELECT * FROM produto WHERE categoriaId==?", arrayOf(categoriaId.toString()))
+        val c = db.rawQuery("SELECT * FROM produto WHERE categoriaId=?", arrayOf(categoriaId.toString()))
         val listaProduto: ArrayList<Produto> = ArrayList()
         if (c.count > 0) {
             c.moveToFirst()
@@ -141,11 +160,35 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "CantinaDB.db", nul
                 val name = c.getString(nameIndex)
                 val price = c.getFloat(priceIndex)
                 val image = c.getInt(imageIndex)
-                listaProduto.add(Produto(id, name, price, image))
+                listaProduto.add(Produto(id, name, price, image, categoriaId))
             } while (c.moveToNext())
         }
         db.close()
         return listaProduto
+    }
+
+    //verificar essa função
+    fun selectProdutoById(produtoId: Int, categoriaId: Int): Produto {
+        val db = this.readableDatabase
+        val c = db.rawQuery("SELECT * FROM produto WHERE id=?", arrayOf(produtoId.toString()))
+        val listaProduto: ArrayList<Produto> = ArrayList()
+        if (c.count > 0) {
+            c.moveToFirst()
+            val idIndex = c.getColumnIndex("id")
+            val nameIndex = c.getColumnIndex("name")
+            val priceIndex = c.getColumnIndex("price")
+            val imageIndex = c.getColumnIndex("imageId")
+            do {
+                val id = c.getInt(idIndex)
+                val name = c.getString(nameIndex)
+                val price = c.getFloat(priceIndex)
+                val image = c.getInt(imageIndex)
+                listaProduto.add(Produto(id, name, price, image, categoriaId))
+            } while (c.moveToNext())
+        }
+        val produto = listaProduto[0]
+        db.close()
+        return produto
     }
 
 }

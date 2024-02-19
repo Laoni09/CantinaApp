@@ -51,15 +51,16 @@ class MainActivity : AppCompatActivity() {
         listaCategorias = db.categoriaListSelectAll()
         //tratar a CategoriaActivity
         val adapter = CategoriaListAdapter(listaCategorias, CategoriaListAdapter.OnClickListener { categoria ->
-            val i = Intent(this, CategoriaActivity::class.java)
+            val i = Intent(applicationContext, CategoriaActivity::class.java)
             i.putExtra("categoriaId", categoria.id)
             result.launch(i)
         }, CategoriaListAdapter.OnLongClickListener { categoria ->
-            val i = Intent(this, EditarCategoriaActivity::class.java)
+            val i = Intent(applicationContext, EditarCategoriaActivity::class.java)
             i.putExtra("name", categoria.name)
             i.putExtra("id", categoria.id)
             result.launch(i)
         })
+
         binding.recyclerViewCategoria.adapter = adapter
 
         adapter.notifyDataSetChanged()
