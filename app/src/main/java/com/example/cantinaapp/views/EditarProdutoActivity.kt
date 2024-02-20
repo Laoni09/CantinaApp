@@ -26,17 +26,17 @@ class EditarProdutoActivity : AppCompatActivity() {
         val db = DBHelper(applicationContext)
 
         val produtoId = i.extras!!.getInt("id")
-        /*val name = i.extras!!.getString("name").toString()
+        val name = i.extras!!.getString("name").toString()
         val price = i.extras!!.getFloat("price")
-        val imageId = i.extras!!.getInt("imageId")*/
+        var imageId = i.extras!!.getInt("imageId")
         val categoriaId = i.extras!!.getInt("categoriaId")
         //fazer a conexão pelo intent e não pelo db pra ficar mais rápido
-        val produto = db.selectProdutoById(produtoId, categoriaId)
-        var imageId = produto.imageId
+        /*val produto = db.selectProdutoById(produtoId, categoriaId)
+        var imageId = produto.imageId*/
 
         binding.imageEditarImagem.setImageResource(imageId)
-        binding.editNomeProduto.setText(produto.name)
-        binding.editPrecoProduto.setText(produto.price.toString())
+        binding.editNomeProduto.setText(name)
+        binding.editPrecoProduto.setText(price.toString())
 
 
         binding.imageEditarImagem.setOnClickListener {
@@ -69,6 +69,7 @@ class EditarProdutoActivity : AppCompatActivity() {
 
         binding.buttonExcluirProduto.setOnClickListener {
             db.produtoDelete(produtoId)
+            setResult(1, i)
             finish()
         }
     }

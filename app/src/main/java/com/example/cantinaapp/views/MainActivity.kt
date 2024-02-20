@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
         result = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if(it.data != null && it.resultCode == 1){
                 loadList()
-            } else if (it.data != null && it.resultCode == 0) {
-                Toast.makeText(applicationContext, "Operação Cancelada", Toast.LENGTH_SHORT).show()
             }
         }
     }

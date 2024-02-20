@@ -3,6 +3,7 @@ package com.example.cantinaapp.views
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.cantinaapp.data.DBHelper
 import com.example.cantinaapp.databinding.ActivityAdicionarCategoriaBinding
 
@@ -18,19 +19,19 @@ class AdicionarCategoria : AppCompatActivity() {
         val db = DBHelper(this)
 
         binding.buttonAddCategoria.setOnClickListener {
-            val nome = binding.editNomeCategoria.text.toString().trim()
-            if(!nome.isEmpty()){
-                db.categoriaInsert(nome)
+            val name = binding.editNomeCategoria.text.toString().trim()
+            if(name.isNotEmpty()){
+                db.categoriaInsert(name)
                 val i = Intent(this, MainActivity::class.java)
-                i.putExtra("name", nome)
+                i.putExtra("name", name)
                 setResult(1, i)
+                finish()
+            }else if(name.isEmpty()){
+                Toast.makeText(applicationContext, "CATEGORIA SEM NOME!", Toast.LENGTH_LONG).show()
             }
-            finish()
         }
 
         binding.buttonCancelarCategoria.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            setResult(0, i)
             finish()
         }
     }

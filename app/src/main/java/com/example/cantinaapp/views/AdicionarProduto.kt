@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.cantinaapp.R
@@ -14,7 +15,7 @@ class AdicionarProduto : AppCompatActivity() {
 
     private lateinit var binding: ActivityAdicionarProdutoBinding
     private lateinit var result: ActivityResultLauncher<Intent>
-    private var id: Int? = -1
+    private var id = R.drawable.baseline_add_photo_alternate_24
     //não pode declarar o i = intent global (por quê?)
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -38,32 +39,34 @@ class AdicionarProduto : AppCompatActivity() {
 
         result = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.data != null && it.resultCode == 1) {
-                id = it.data?.extras?.getInt("id")
-                binding.imageAdicionarImagem.setImageDrawable(resources.getDrawable(id!!))
-            } else {
-                id = -1
-                binding.imageAdicionarImagem.setImageResource(R.drawable.baseline_add_photo_alternate_24)
+                id = it.data!!.extras!!.getInt("id")
+                binding.imageAdicionarImagem.setImageDrawable(resources.getDrawable(id))
             }
         }
 
         binding.buttonAddProduto.setOnClickListener {
             val name = binding.editNomeProduto.text.toString().trim()
-            val price = binding.editPrecoProduto.text.toString().toFloat()
-            var imageId = -1
-            if (id != null) {
-                imageId = id as Int
+            val priceStr = binding.editPrecoProduto.text.toString()
+            var priceFloat = 0.00F
+            if(priceStr.isNotEmpty()){
+                priceFloat = priceStr.toFloat()
             }
+            val imageId = this.id
             val categoriaId = i.extras!!.getInt("categoriaId")
 
-            if(!name.isEmpty() && !price.equals(0.00F)){
-                db.produtoInsert(name, price, imageId, categoriaId)
+            if(name.isNotEmpty() && !priceFloat.equals(0.00F)){
+                db.produtoInsert(name, priceFloat, imageId, categoriaId)
                 //revisar essa parte e ver se realmente precisa
                 i.putExtra("name", name)
-                i.putExtra("price", price)
+                i.putExtra("price", priceFloat)
                 i.putExtra("imageId", imageId)
                 setResult(1, i)
+                finish()
+            } else if(name.isEmpty()){
+                Toast.makeText(applicationContext, "PRODUTO SEM NOME!", Toast.LENGTH_LONG).show()
+            } else if(priceFloat.equals(0.00F)){
+                Toast.makeText(applicationContext, "PRODUTO SEM PREÇO!", Toast.LENGTH_LONG).show()
             }
-            finish()
         }
     }
 }

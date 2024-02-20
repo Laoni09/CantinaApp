@@ -11,9 +11,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "CantinaDB.db", nul
 
     val initQueries = arrayOf(
         "CREATE TABLE categoria (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);",
-        "INSERT INTO categoria (name) VALUES ('padrão');",
-        "INSERT INTO categoria (name) VALUES ('doces');",
-        "INSERT INTO categoria (name) VALUES ('salgados');",
         "CREATE TABLE produto (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT, " +
@@ -21,9 +18,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "CantinaDB.db", nul
                 "imageId INT, " +
                 "categoriaId INTEGER, " +
                 "FOREIGN KEY(categoriaId) REFERENCES categoria(id));",
-        "INSERT INTO produto (name, price, imageId, categoriaId) VALUES ('morango', 3.50, -1, 1);",
-        "INSERT INTO produto (name, price, imageId, categoriaId) VALUES ('bolo', 2.50, -1, 2);",
-        "INSERT INTO produto (name, price, imageId, categoriaId) VALUES ('suco', 1.50, -1, 3);",
     )
 
     override fun onCreate(db: SQLiteDatabase) {
