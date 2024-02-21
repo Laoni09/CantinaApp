@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/image_sum"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/baseline_arrow_circle_left_24" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image_produto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/baseline_add_photo_alternate_24" />
+
+        <TextView
+            android:id="@+id/text_name_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produto"
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_sub"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/baseline_arrow_circle_right_24" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="R$0.00"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Quant:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edit_quant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:inputType="number"
+                android:text="0"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

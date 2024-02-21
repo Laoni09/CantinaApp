@@ -39,6 +39,13 @@ class CategoriaActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.textTitleCategoria.setOnClickListener {
+            val categoriaId = i.extras!!.getInt("categoriaId")
+            val j = Intent(applicationContext, PitchActivity::class.java)
+            j.putExtra("categoriaId", categoriaId)
+            result.launch(j)
+        }
+
         binding.buttonAddProduct.setOnClickListener {
             //result.launch(Intent(applicationContext, AdicionarProduto::class.java))
             val categoriaId = i.extras!!.getInt("categoriaId")
@@ -54,6 +61,7 @@ class CategoriaActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Operação Cancelada", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
