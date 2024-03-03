@@ -31,6 +31,8 @@ class PitchActivity : AppCompatActivity() {
         val adapter = PitchListAdapter(listaProdutos)
         binding.recyclerViewPitch.adapter = adapter
 
+        val sizeList = PitchListAdapter(listaProdutos).
+
         adapter.notifyDataSetChanged()
     }
 }
